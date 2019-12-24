@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Which Color Is It?</title>
+	<link rel="stylesheet" type="text/css" href="ColorGame.css">
+	<link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+	<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+</head>
+<body>
+	<div id="fb-root"></div>
+		<script>(function(d, s, id) {
+		  var js, fjs = d.getElementsByTagName(s)[0];
+		  if (d.getElementById(id)) return;
+		  js = d.createElement(s); js.id = id;
+		  js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.2';
+		  fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+		</script>
+
+	<audio src="NoMoreLives.mp3" id="LostLivesAudio">
+  			Your browser does not support the <code>audio</code> element.
+	</audio>
+	<audio src="CorrectColor.mp3" id="CorrectAnswerAudio">
+  			Your browser does not support the <code>audio</code> element.
+	</audio>
+	<audio src="Wrong_Color.mp3" id="WrongAnswerAudio">
+  			Your browser does not support the <code>audio</code> element.
+	</audio>
+	<audio src="Victory.mp3" id="YouWonAudio">
+  			Your browser does not support the <code>audio</code> element.
+	</audio>
+	<audio src="RGB.mp3" id="RGBSound">
+  			Your browser does not support the <code>audio</code> element.
+	</audio>
+
+<div id="All" class="hiddenObject">
+	<nav class="navbar navbar-light navbar-expand-md bg-faded " id="menu">
+	    	
+		
+	    <div class="navbar-brand d-flex w-12.5 " id="img"  >
+	    	
+				<a href="/" id="iguanaLink"> <img src="only_iguana.png" id="iguana"></a>
+
+			
+	    	
+		</div>
+
+		<div class="navbar-nav justify-content-center w-75" id="BtnParent">
+			<div class="">	
+				 <button class="btn my-2 my-sm-0 " id="playBtn">New Game</button>
+			</div>	
+		</div>
+
+	    
+	    <button class="navbar-toggler justify-content-end w-12.5" type="button" data-toggle="collapse" data-target="#collapsingNavbar3" id="BtnCollapse">
+        	<span class="navbar-toggler-icon"></span>
+    	</button>
+	    <div class="navbar-collapse collapse w-25" id="collapsingNavbar3">
+	        <ul class="nav navbar-nav ml-auto w-100 justify-content-end" id="menuText">
+	            <li class="nav-item" id="HowToPlayLi">
+	                <a class="nav-link" href="#" id="myBtn">How to play</a>
+	            </li>
+	        </ul>
+	    </div>
+	</nav>
+	<br>
+	<div id="myModal" class="modal">
+		<!-- Modal content -->
+		<div class="modal-content">
+		 <div class="modal-header">
+		    <span id="HTP">How To Play</span>
+		    <span class="close">&times;</span>
+		    
+		 </div>
+		  <div class="modal-body">
+		    <ul>
+		  		<li>
+		  			<p><strong>Select "New Game" to begin a new game</strong></p>
+		  		</li>
+		  		<li>
+		  			<h6><strong>Game Rules</strong></h6>
+				    <p>The goal of each level is to select the right color based on the color description.</p>
+				    <p>On the left side of the screen, the three basic color components appear along with the percentage that each contributes to the current level's goal color</p>
+				    <p>The game is simple. Click on the color on the right that matches exactly the color produced by the percentages on the left. </p>
+		  		</li>
+		  		
+		  			<p>
+		  				Above the color section, you can find the game stats. Those stats consist of the following:
+		  				<ol>
+		  					<li>
+		  						<strong>Lives:</strong> The mistaken choices you have left.
+		  					</li>
+		  					<li>
+		  						<strong>Score:</strong> The current game's score.
+		  					</li>
+		  					<li>
+		  						<strong>Level:</strong> The current level.
+		  					</li>
+		  					<li>
+		  						<strong>Highscore:</strong> Your highscore.
+		  					</li>
+		  				</ol>
+		  			</p>
+		  		
+		  		<li>
+		  			<strong>Up to level 60</strong>
+		  			<p>
+		  				Each time you click on a wrong color, this color disappears and a you lose a life and your score is diminished.
+		  			</p>
+		  			<p>
+		  				Each time you click on a correct color, you proceed to the next level. You also gain a gradually augmenting amount on your score.
+		  			</p>
+		  			<p>
+		  				For every 5 levels that you pass, you gain one life back.
+		  			</p>
+		  			<p>
+		  				If you lose all your lives, then you return to the last checkpoint. The checkpoints are on levels 1, 16, 31 and 46. Your score is diminished and you can start again from your checkpoint level having a specific amount of lives that differs for each checkpoint.
+		  			</p>
+		  			<p>
+		  				Between two consecutive checkpoints, the number of possible colors to choose remains constant. However, once you pass from one checkpoint into another, three more colors appear. In short:
+		  			</p>
+		  			<ol>
+		  				<p>
+		  					<li>
+		  					<strong>Levels 1-15:</strong> 3 colors.
+		  					</li>
+		  					<li>
+		  						<strong>Levels 16-30:</strong> 6 colors.
+		  					</li>
+		  					<li>
+		  						<strong>Levels 31-45:</strong> 9 colors.
+		  					</li>
+		  					<li>
+		  						<strong>Levels 46-60:</strong> 12 colors.
+		  					</li>
+		  				</p>
+		  				
+		  				
+		  			</ol>
+		  		</li>
+		  		<li>
+		  			<strong>Levels 61-65</strong>
+		  			<p>
+		  				After level 60 the game rules change significantly. Instead of the percentage of Red, Yellow and Blue components, you now have to pick the right color based on its RGB (Red, Green, Blue) <strong>VALUE</strong> and not percentage. Each RGB component has a value that varies between 0 and 255. That means that, for example the color RGB(41,37,129) consists of Red : 41/255 , Green : 37/255 and Blue : 129/255.
+		  			</p>
+		  			<p>
+		  				For each correct answer on these levels, you gain back 1 life. Also each level adds 3 colors. The final level, 65, has 12 colors.
+		  			</p>
+		  			<p>
+		  				If you lose all your lives within these five final levels, you return to the level 46 checkpoint. This means that the final checkpoint consists of 20 levels rather than 15.
+		  			</p>
+		  		</li>
+		  	</ul>
+		  </div>
+		</div> 
+	</div >
+
+
+	<div id="message">
+		<span class="welcome">Welcome!</span>
+		<br>
+		<br>
+		<br>
+		<span id="clickOn1">Click on "New Game" to Start! </span>
+		<br>
+		<br>
+		
+		<span id="clickOn2">OR</span>
+		<br>
+		<br>
+		
+
+		<span id="clickOn3">Click on "How to Play" to learn the rules!</span>
+	</div>
+	<br>
+	<br>
+
+	<div class="container hiddenstripe" id="stripe">
+	  <div class="row align-items-center">
+	    
+	    <!-- <div class="col col-md-offset-2" id="time">
+	      Play Time
+	    </div> -->
+	    <div class="col col-md-offset-2" id="lives">
+	      Lives
+	    </div>
+	    <div class="col" id="level">
+	      Level
+	    </div>
+	    <div class="col" id="score">
+	      Score
+	    </div>
+	    <div class="col" id="highScore">
+	      Highscore
+	    </div>
+	    <div class="w-100"></div>
+		  <!-- <div class="col" id="timeJ">00:00</div> -->
+		  <div class="col" id="livesJ"></div>
+		  <div class="col" id="levelJ"></div>
+		  <div class="col" id="scoreJ"></div>
+		  <div class="col" id="highScoreJ"></div>
+  	  </div>
+    </div> 
+    <br>
+
+	<div id="win">
+	</div>
+
+	
+	<div class="container-fluid" id="GameAll">
+	  <div class="row ">
+	    <div class="col-4 " id="Txt" >
+	    	<h1> 
+				<span id="colorDisplay" class="hiddenstripe">
+					<span id="ColorText"></span> 
+					<br>
+					<span id="red"></span> 
+					
+					<div class="w3-border" style="outline:none!important; border:0px !important">
+					  <div class="w3-grey hiddenstripe" id="redBar1" ></div>
+					</div>
+					<div class="w3-border" style="outline:none!important; border:0px !important">
+					  <div class="w3-grey" id="redBar" ></div>
+					</div>
+
+					<div class="w3-border" style="outline:none!important; border:0px !important">
+					  <div class="w3-grey hiddenstripe" id="redBar2" ></div>
+					</div>
+
+					<span id="yellow"></span> 
+					
+					<div class="w3-border " style="outline:none!important; border:0px !important">
+					  <div class="w3-grey hiddenstripe" id="yellowBar1" ></div>
+					</div>
+					<div class="w3-border" style="outline:none!important; border:0px !important">
+					  <div class="w3-grey" id="yellowBar" ></div>
+					</div>
+					<div class="w3-border" style="outline:none!important; border:0px !important">
+					  <div class="w3-grey hiddenstripe" id="yellowBar2" ></div>
+					</div>
+
+					
+					<span id="blue"></span> 
+					
+					<div class="w3-border" style="outline:none!important; border:0px !important">
+					  <div class="w3-grey hiddenstripe" id="blueBar1" ></div>
+					</div>
+					<div class="w3-border" style="outline:none!important; border:0px !important">
+					  <div class="w3-grey" id="blueBar" ></div>
+					</div>
+					<div class="w3-border" style="outline:none!important; border:0px !important">
+					  <div class="w3-grey hiddenstripe" id="blueBar2" ></div>
+					</div>
+
+					
+				</span>	 
+			</h1>
+	     
+	    </div>
+	    <div class="col-7 center-block" id="container1">
+	    </div>
+     </div>	
+    </div>
+    <br> 
+
+    
+    <div id="Modal2" class="modal">
+		<!-- Modal content -->
+		<div class="modal-content " id="modalcontent2">
+		 
+		    
+		   
+		 
+		  <div class="modal-body" id="mdbd">
+		    
+		  </div>
+		 <!--  <span class="close" id="close2">&times;</span> -->
+		  <button class="close" id="close2"></button>
+		    
+		</div> 
+	</div >
+
+
+
+
+
+
+
+</div>
+
+<div class="hiddenObject" id="endContainer">
+		<div class="squareEnd squareEnd1 hiddenObject" id="Square1"></div>
+		<div class="squareEnd squareEnd2 hiddenObject" id="Square2"></div>
+		<div class="squareEnd squareEnd3 hiddenObject" id="Square3"></div>
+		<div class="squareEnd squareEnd4 hiddenObject" id="Square4"></div>
+		<div class="squareEnd squareCenter1 hiddenObject" id="SquareCenter1"></div>
+		<div class="squareEnd squareCenter2" id="SquareCenter2"></div>
+		<div class="text-centered" id="winningText"></div>
+		<a href="/" class="text-centered" id ="NewGame"></a>
+</div>	
+
+
+<div id="AboutGame" >
+	
+	<!-- <div  id="AboutGameContainer">
+		<div class="squareAboutGame squareAboutGame1 linearXYsquareAboutGame1 squareAboutGameAnimation " id="squareAboutGame1"></div>
+		<div class="squareAboutGame squareAboutGame2  linearXYsquareAboutGame2 squareAboutGameAnimation" id="squareAboutGame2"></div>
+		<div class="squareAboutGame squareAboutGame3  squareAboutGameAnimation linearXYsquareAboutGame3" id="squareAboutGame3"></div>
+		<div class="squareAboutGame squareAboutGame4 linearXYsquareAboutGame4 squareAboutGameAnimation" id="squareAboutGame4"></div>
+		<div class="squareAboutGame squareAboutGame5 linearXYsquareAboutGame5 squareAboutGameAnimation2" id="squareAboutGame5"></div>
+		<div class="squareAboutGame squareAboutGame6 linearXYsquareAboutGame6 squareAboutGameAnimation2" id="squareAboutGame6"></div>
+		<div class="squareAboutGame squareAboutGame7 linearXYsquareAboutGame7 squareAboutGameAnimation2" id="squareAboutGame7"></div>
+		<div class="squareAboutGame squareAboutGame8 linearXYsquareAboutGame8 squareAboutGameAnimation2" id="squareAboutGame8"></div>
+		
+	</div> -->
+	<br>
+	<br>
+	<br>
+
+
+
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<img src="only_iguana.png" id="iguanaIndex">
+			</div>
+		</div>
+	</div>
+
+	<h1><strong>Which Color is it?</strong></h1>
+	<div id="indexText">
+		<p>
+			Can you pick the correct color knowing only how the three basic colors
+			are combined?
+		</p>
+		<p>
+			If you feel confident enough, well, feel free to try your luck.
+		</p>
+		<p>
+			Will you be the next color game master?
+		</p>
+		<br>
+	</div>
+
+	<div id="ColourGameButton">
+		
+		
+		<button id="indexBtn" onclick="startGame()">Let's Find Out</button>
+		
+		<br>	
+		
+	</div>
+
+</div>	
+
+
+
+
+
+
+
+	<script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+	<script type="text/javascript" src="bootstrap.min.js"></script>
+	<script type="text/javascript" src="ColorGame.js"></script>
+</body>
+</html>
